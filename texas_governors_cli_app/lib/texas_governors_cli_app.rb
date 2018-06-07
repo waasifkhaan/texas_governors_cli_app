@@ -1,4 +1,10 @@
-require "texas_governors_cli_app/version"
+require 'pry'
+require 'open-uri'
+require 'nokogiri'
+require_relative "./texas_governors_cli_app/version"
+require_relative "./texas_governors_cli_app/cli"
+require_relative "./texas_governors_cli_app/scraper"
+require_relative "./texas_governors_cli_app/governor"
 
 module TexasGovernorsCliApp
   # Your code goes here...
