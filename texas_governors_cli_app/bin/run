@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
-require './lib/texas_governors_cli_app'
+#!/usr/bin/env ruby
+require '../lib/texas_governors_cli_app'
 TexasGovernors::CLI.new.call
