@@ -6,21 +6,22 @@ class TexasGovernorsCliApp::CLI
   end 
   
   def start 
-    puts "Welcome to the app for the chronological history of Governors that served the state of Texas since 1846 "
+    puts "Welcome to the app for the chronological history of Governors that served the 
+    state of Texas since 1846 "
     puts "Here is the list of Governors "
     list_governors
     puts " Select the index number to get details about the chosen Governor of the State of Texas"
-    governor_attributes
+    #governor_attributes
   end 
   
   def list_governors
-    TexasGovernors::Governor.all.each.with_index(1) do |governor, i|
+    TexasGovernorsCliApp::Governor.all.each.with_index(1) do |governor, i|
       puts "#{i}. #{governor.name} served from #{governor.term_in_office}."
     end
   end
   
   def governor_attributes
-    # from the selected governor from the list I want to chose the details based on the index number chosen and then display 
+    # from the selected governor from the list I want to choose the details based on the index number chosen and then display 
     puts "#{governor.name}"
     puts "#{governor.born_death_year}"
     puts "#{governor.age}"
