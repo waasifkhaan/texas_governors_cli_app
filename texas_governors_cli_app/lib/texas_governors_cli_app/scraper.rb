@@ -1,4 +1,4 @@
-class TexasGovernors::Scraper
+class TexasGovernorsCliApp::Scraper
   attr_accessor :doc, :name, :profile_url, :born_death_date, :age, :term_in_office, :party_affiliation, :elected_year
   
   def get_page
@@ -27,3 +27,4 @@ class TexasGovernors::Scraper
     array_governors
     binding.pry
   end 
+end 

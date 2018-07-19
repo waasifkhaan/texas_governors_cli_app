@@ -1,4 +1,4 @@
-class TexasGovernors::CLI 
+class TexasGovernorsCliApp::CLI 
   def call 
   
     start 

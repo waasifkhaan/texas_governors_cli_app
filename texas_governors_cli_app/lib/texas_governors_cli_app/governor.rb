@@ -1,4 +1,4 @@
-class TexasGovernors::Governor
+class TexasGovernorsCliApp::Governor
   attr_accessor :doc, :name, :profile_url, :born_death_date, :age, :term_in_office, :party_affiliation, :elected_year
   
   @@governors = [] 
@@ -34,3 +34,4 @@ class TexasGovernors::Governor
         @@governors << governor 
     end
   end 
+end 
