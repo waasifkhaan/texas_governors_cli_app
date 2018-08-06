@@ -3,13 +3,13 @@ class TexasGovernorsCliApp::Scraper
   
   def get_page
     
-    @doc = Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_Governors_of_Texas#Governors_of_Texas"))
+    Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_Governors_of_Texas#Governors_of_Texas"))
     
   end 
   
   def list_governors 
     array_governors = []
-    title = @doc.search(".wikitable")
+    title = get_page.search(".wikitable")
 
       title[1].css("tr").each do |tr_list|
         scraped_governor = {}
