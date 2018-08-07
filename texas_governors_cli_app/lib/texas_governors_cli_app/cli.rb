@@ -10,7 +10,7 @@ class TexasGovernorsCliApp::CLI
     puts ""
     puts ""
     puts "Type the index number between 1 through 48 to get more details :".red 
-    input = gets.chomp
+    governor_details
     puts ""
     
     
@@ -26,10 +26,37 @@ class TexasGovernorsCliApp::CLI
       else 
       puts"#{i}. #{governor_object.name}"
       end  
-      
-      
     end
   end 
+  
+  def governor_details
+    
+    input = STDIN.gets.strip.downcase 
+    
+        if input.to_i.between?(1,TexasGovernorsCliApp::Scraper.scraper_governors.size)
+            governor = TexasGovernorsCliApp::Scraper.scraper_governors[input.to_i - 1]
+            puts governor.name
+            puts governor.age
+            puts governor.party_affiliation
+            puts governor.term_in_office
+            puts governor.profile_url
+            puts " Did you want to look at the list again? y/n "
+            input = gets.chomp 
+            if input == "y"
+              list_governor_names
+              puts "Type the index number between 1 through 48 to get more details :".red
+              
+            else
+              nil
+            end 
+              
+            
+        else 
+          puts " Please enter the correct index number to get more details."
+          input = STDIN.gets.strip.downcase until input.to_i.between?(1,TexasGovernorsCliApp::Scraper.scraper_governors.size)
+          puts " Please enter the correct index number to get more details."
+        end 
+      end 
   
   
   # line = "--------------------------------------------"
