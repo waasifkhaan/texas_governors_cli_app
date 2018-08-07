@@ -34,22 +34,19 @@ class TexasGovernorsCliApp::Scraper
         
         scraped_governor[:party_affiliation] = tr_list.css("td")[5].text[0..-2].concat(' Party')
         
-        scraped_governor[:elected_year] = tr_list.css("td")[6].text[0..-2]
-        
         scraped_governor[:profile_url] = "https://en.wikipedia.org#{tr_list.css("td big b a").attribute("href").value}"
         
         array_governors << scraped_governor 
     end
     i = 0 
-    while i < arr.length
-    puts array_governors[i][:name]
+    while i < arr.length - 1
+    puts i = i + 1 
+    puts "NAME : #{array_governors[i][:name]}"
     puts array_governors[i][:age]
     puts array_governors[i][:term_in_office]
     puts array_governors[i][:party_affiliation]
-    puts array_governors[i][:elected_year]
     puts array_governors[i][:profile_url]
-    
-    i = i + 1 
+    puts "--------------------------------------------"
   end 
     end 
     
