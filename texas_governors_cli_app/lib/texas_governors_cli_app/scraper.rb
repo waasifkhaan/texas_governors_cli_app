@@ -13,23 +13,37 @@ class TexasGovernorsCliApp::Scraper
     array_governors = []
     title = get_page.search(".wikitable")
 
-      title[1].css("tr").drop(1).each do |tr_list|
+      title[1].css("tr").drop(1).take(100).each do |tr_list|
+        
         scraped_governor = {}
-        binding.pry
-       
+        
+        
         scraped_governor[:name] = tr_list.css("td big b a").text
         
-        scraped_governor[:age] = tr_list.css("td small").text[0..-12]
+        # scraped_governor[:age] = tr_list.css("td small").text[0..-13].concat(' Years)')
                                         
+        # #scraped_governor[:term_in_office] = tr_list.css("td")[4].text[0..-2]
         
-        scraped_governor[:profile_url] = "https://en.wikipedia.org#{tr_list.css("td big b a").attribute("href").value}"
-        scraped_governor[:elected_year] = tr_list.css("td")[6].text[0..-2]
-        scraped_governor[:term_in_office] = "#{tr_list.css("td")[4].children[0].text} - #{tr_list.css("td")[4].children[0].text.gsub(/[\n]/, '')}"
-        scraped_governor[:party_affiliation] = tr_list.css("td")[5].text
+        # scraped_governor[:party_affiliation] = tr_list.css("td")[5].text[0..-2].concat(' Party')
+        
+        # #scraped_governor[:elected_year] = tr_list.css("td")[6].text[0..-2]
+        
+        # scraped_governor[:profile_url] = "https://en.wikipedia.org#{tr_list.css("td big b a").attribute("href").value}"
         
         array_governors << scraped_governor 
     end
-    array_governors
+    i = 0
+    while i < 100
+    puts array_governors[i][:name]
+    i= i + 1
+  end 
+    
+    # puts array_governors[i][:age]
+    # #puts array_governors[i][:term_in_office]
+    # puts array_governors[i][:party_affiliation]
+    # #puts array_governors[i][:elected_year]
+    # puts array_governors[i][:profile_url]
+    
     
   end 
 end 
