@@ -38,15 +38,25 @@ class TexasGovernorsCliApp::Scraper
         
         array_governors << scraped_governor 
     end
+    line = "--------------------------------------------"
     i = 0 
     while i < arr.length - 1
     puts i = i + 1 
-    puts "NAME : #{array_governors[i][:name]}"
-    puts array_governors[i][:age]
-    puts array_governors[i][:term_in_office]
-    puts array_governors[i][:party_affiliation]
-    puts array_governors[i][:profile_url]
-    puts "--------------------------------------------"
+    
+    if array_governors[i][:party_affiliation] == "Democratic Party"
+      
+    puts array_governors[i][:name].blue 
+    
+    elsif array_governors[i][:party_affiliation] == "Republican Party"
+      puts array_governors[i][:name].red
+    else 
+      puts array_governors[i][:name]
+    end 
+    # puts array_governors[i][:age]
+    # puts array_governors[i][:term_in_office]
+    # puts array_governors[i][:party_affiliation]
+    # puts array_governors[i][:profile_url]
+    puts line
   end 
     end 
     
