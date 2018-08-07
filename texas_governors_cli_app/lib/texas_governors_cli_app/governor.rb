@@ -13,8 +13,15 @@ class TexasGovernorsCliApp::Governor
     @@all << self
   end
 
-  def self.create_from_collection(final_array_governors)
-    final_array_governors.map { |governor_hash|
+  def self.create_from_collection(hash_array)
+    
+    hash_array.map { |governor_hash|
     self.new(governor_hash)  }
   end
+  
+  def self.object_governors_array
+    TexasGovernorsCliApp::Scraper.scraper_governors.map {|governor_hash|
+    self.new(governor_hash)}
+  
+  end 
 end 

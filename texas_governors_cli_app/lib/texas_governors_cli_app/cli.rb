@@ -1,23 +1,24 @@
 class TexasGovernorsCliApp::CLI 
   def call 
     line = "--------------------------------------------"
-    puts "Welcome to the app for the chronological history of Governors that served the 
+    puts "Welcome to the app for the chronological history of Governors who served the 
     state of Texas since 1846 ".blue
     puts "Here is the list of Governors "
-    self.governor_details
+    list_governor_names
     puts line.red 
     puts line.blue
     puts ""
     puts ""
-    puts "Type the index number to get more details about the Governor :".red 
+    puts "Type the index number between 1 through 48 to get more details :".red 
+    input = gets.chomp
     puts ""
-    #governor_attributes
+    
     
   end 
   
-  def governor_details
+  def list_governor_names
     
-    TexasGovernorsCliApp::Scraper.list_governors.each_with_index do |governor_object,i|
+    TexasGovernorsCliApp::Scraper.scraper_governors.each_with_index do |governor_object,i|
       if governor_object.party_affiliation == "Democratic Party"
         puts"#{i}. #{governor_object.name}".blue 
       elsif  governor_object.party_affiliation == "Republican Party"

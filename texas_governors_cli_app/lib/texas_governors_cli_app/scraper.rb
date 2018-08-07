@@ -1,11 +1,11 @@
 class TexasGovernorsCliApp::Scraper
-  attr_accessor :doc, :name, :profile_url, :born_death_date, :age, :term_in_office, :party_affiliation, :elected_year
+  attr_accessor :name, :profile_url, :age, :term_in_office, :party_affiliation
   
   def self.get_page
     Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_Governors_of_Texas#Governors_of_Texas"))
   end 
   
-  def self.list_governors 
+  def self.scraper_governors 
     final_array_governors = []
     
     array_noko_governors = []
@@ -25,10 +25,11 @@ class TexasGovernorsCliApp::Scraper
       scraped_governor[:term_in_office] = tr_list.css("td")[4].text[0..-2]
       scraped_governor[:party_affiliation] = tr_list.css("td")[5].text[0..-2].concat(' Party')
       scraped_governor[:profile_url] = "https://en.wikipedia.org#{tr_list.css("td big b a").attribute("href").value}"
-      final_array_governors << scraped_governor 
-  end
-  TexasGovernorsCliApp::Governor.create_from_collection(final_array_governors)
-  
+      final_array_governors << scraped_governor
+    end
+    final_array_governors
+    TexasGovernorsCliApp::Governor.create_from_collection(final_array_governors)
+    
   end  
    
 end
