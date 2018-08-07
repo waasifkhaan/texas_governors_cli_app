@@ -6,11 +6,17 @@ class TexasGovernorsCliApp::CLI
   end 
   
   def start 
+    line = "--------------------------------------------"
     puts "Welcome to the app for the chronological history of Governors that served the 
     state of Texas since 1846 ".blue
     puts "Here is the list of Governors "
     TexasGovernorsCliApp::Scraper.list_governors
-    puts " Select the index number to get details about the chosen Governor of the State of Texas"
+    puts line.red 
+    puts line.blue
+    puts ""
+    puts ""
+    puts "Type the index number to get more details about the Governor :".red 
+    puts ""
     #governor_attributes
     
   end 
