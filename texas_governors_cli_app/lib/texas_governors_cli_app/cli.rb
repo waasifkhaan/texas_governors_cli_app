@@ -2,15 +2,14 @@ class TexasGovernorsCliApp::CLI
   LINE = "--------------------------------------------------------------------------------"
   
   def call 
+    puts LINE
     puts "Welcome to the app for the chronological history of Governors from the state of Texas since 1846".blue
+    puts LINE 
     puts "Type 'list' to print all the governors of the state of Texas OR "
-    # puts LINE.red  
     puts "Type 'rep' to list all the governors of the republican party OR ".red
-    # puts LINE.blue
     puts "Type 'dem' to list all the governors of the democtatic party OR ".blue
-    # puts LINE
     puts "Type 'exit' to quit this application ".red
-    # puts LINE
+    puts LINE
     start
   end 
   
@@ -32,7 +31,6 @@ class TexasGovernorsCliApp::CLI
   end 
   
   def list_governor_names
-    
     TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor_object,i|
       if governor_object.party_affiliation == "Democratic Party"
         puts"#{i}. #{governor_object.name}".blue 
@@ -42,7 +40,8 @@ class TexasGovernorsCliApp::CLI
       puts"#{i}. #{governor_object.name}"
       end 
     end 
-    puts "Which repectable governor would you like to get more information about ?"
+    puts LINE
+    puts "Please type the index 'number' to get more information about the respectable governor ?"
     governor_details
     call
     end
@@ -75,7 +74,9 @@ class TexasGovernorsCliApp::CLI
       puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
       # Each governor index number is the same as the one in the original list in order to provide a chronological list.
     end 
-    puts "Which repectable governor would you like to get more information about ?"
+    puts LINE
+    puts "Please type the index 'number' to get more information about the respectable governor ?"
+    puts LINE
     governor_details
     call
   end 
@@ -84,15 +85,17 @@ class TexasGovernorsCliApp::CLI
     TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor,i|
     puts "#{i}.#{governor.name}".blue if governor.party_affiliation == "Democratic Party"
     end
-    puts "Which repectable governor would you like to get more information about ?"
+    puts LINE
+    puts "Please type the index 'number' to get more information about the respectable governor ?"
     governor_details
     call
     # Each governor index number is the same as the one in the original list in order to provide a chronological list.
   end 
   
   def leave 
-    puts " We appreciate you for using this application and hope you got the information required"
+    puts LINE
+    puts " Thank you for using the CLI_Texas_Governor gem application, hope it was informative."
+    puts LINE.blue 
+    puts LINE.red
   end 
-    
-  
 end 
