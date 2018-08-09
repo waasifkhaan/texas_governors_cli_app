@@ -1,15 +1,18 @@
 class TexasGovernorsCliApp::CLI 
   def call 
     line = "--------------------------------------------"
-    puts "Welcome to the app for the chronological history of Governors who served the 
-    state of Texas since 1846 ".blue
-    puts "Here is the list of Governors "
+    puts "Welcome to the app for the chronological history of Governors who served the state of Texas since 1846 ".blue
+    puts ""
+    puts "Below is the indexed list of all the governors of the state of Texas  "
+    puts ""
     list_governor_names
     puts line.red 
     puts line.blue
     puts ""
     puts ""
-    puts "Type the index number between 1 through 48 to get more details :".red 
+    puts "Type the index number between 1 through 48 to get more details : OR "
+    puts "Type Rep to list all the governors from the republican party OR ".red
+    puts "Type Dem to list all the governors from the democtatic party ".blue
     governor_details
     puts ""
     
@@ -18,7 +21,7 @@ class TexasGovernorsCliApp::CLI
   
   def list_governor_names
     
-    TexasGovernorsCliApp::Scraper.scraper_governors.each_with_index do |governor_object,i|
+    TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor_object,i|
       if governor_object.party_affiliation == "Democratic Party"
         puts"#{i}. #{governor_object.name}".blue 
       elsif  governor_object.party_affiliation == "Republican Party"
@@ -33,30 +36,50 @@ class TexasGovernorsCliApp::CLI
     
     input = STDIN.gets.strip.downcase 
     
-        if input.to_i.between?(1,TexasGovernorsCliApp::Scraper.scraper_governors.size)
-            governor = TexasGovernorsCliApp::Scraper.scraper_governors[input.to_i - 1]
+        if input.to_i.between?(1,TexasGovernorsCliApp::Governor.create_from_collection.size)
+            governor = TexasGovernorsCliApp::Governor.create_from_collection[input.to_i - 1]
             puts governor.name
             puts governor.age
             puts governor.party_affiliation
             puts governor.term_in_office
             puts governor.profile_url
-            puts " Did you want to look at the list again? y/n "
-            input = gets.chomp 
-            if input == "y"
-              list_governor_names
-              puts "Type the index number between 1 through 48 to get more details :".red
+            # puts " Did you want to look at the list again? y/n "
+            # input = gets.chomp 
+            # if input == "y"
+            #   list_governor_names
+            #   puts "Type the index number between 1 through 48 to get more details :".red
               
-            else
-              nil
-            end 
-              
+            # else
+            #   nil
+            # end 
+        elsif input == "rep"
+            list_republican_governors
+        elsif input == "dem"
+            list_democratic_governors
             
         else 
           puts " Please enter the correct index number to get more details."
-          input = STDIN.gets.strip.downcase until input.to_i.between?(1,TexasGovernorsCliApp::Scraper.scraper_governors.size)
+          input = STDIN.gets.strip.downcase until input.to_i.between?(1,TexasGovernorsCliApp::Governor.create_from_collection.size)
           puts " Please enter the correct index number to get more details."
         end 
       end 
+  
+  def list_republican_governors
+    
+    TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor,i|
+    puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
+    end 
+    
+  end 
+  
+  def list_democratic_governors
+    
+    TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor,i|
+    puts "#{i}.#{governor.name}".blue if governor.party_affiliation == "Democratic Party"
+    end
+    # Each governor index number is the same as the one in the original list in order to provide a chronological list.
+  end 
+    
   
   
   # line = "--------------------------------------------"

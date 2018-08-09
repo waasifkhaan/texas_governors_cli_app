@@ -1,35 +1,66 @@
 class TexasGovernorsCliApp::Scraper
-  attr_accessor :name, :profile_url, :age, :term_in_office, :party_affiliation
+  attr_accessor :name, :profile_url, :age, :term_in_office, :party_affiliation, :noko
   
-  def self.get_page
-    Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_Governors_of_Texas#Governors_of_Texas"))
+  def initialize 
+    @noko = Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_Governors_of_Texas#Governors_of_Texas"))
   end 
   
-  def self.scraper_governors 
+  def scraper_governors 
     final_array_governors = []
     
     array_noko_governors = []
-    title = get_page.search(".wikitable")
-    final = title[1].css("tr").drop(1)
-      
-      list_48 = final.each do |tr_list|
-      array_noko_governors << tr_list if tr_list.css("td").length >= 6
-      end
+    
+    @noko.search(".wikitable")[1].css("tr").drop(1).each {|tr_list|
+    array_noko_governors << tr_list if tr_list.css("td").length >= 6}
         
       array_noko_governors.each do |tr_list|
-      
       scraped_governor = {}
-      
       scraped_governor[:name] = tr_list.css("td big b a").text
       scraped_governor[:age] = tr_list.css("td small").text[0..-13].concat(' Years)')
       scraped_governor[:term_in_office] = tr_list.css("td")[4].text[0..-2]
       scraped_governor[:party_affiliation] = tr_list.css("td")[5].text[0..-2].concat(' Party')
       scraped_governor[:profile_url] = "https://en.wikipedia.org#{tr_list.css("td big b a").attribute("href").value}"
       final_array_governors << scraped_governor
-    end
+      end
     final_array_governors
-    TexasGovernorsCliApp::Governor.create_from_collection(final_array_governors)
     
   end  
    
 end
+
+
+# class TexasGovernorsCliApp::Scraper
+#   attr_accessor :name, :profile_url, :age, :term_in_office, :party_affiliation
+  
+#   def self.get_page
+#     Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_Governors_of_Texas#Governors_of_Texas"))
+#   end 
+  
+#   def self.scraper_governors 
+#     final_array_governors = []
+    
+#     array_noko_governors = []
+#     title = get_page.search(".wikitable")
+#     final_49 = title[1].css("tr").drop(1)
+      
+#       final_49.each do |tr_list|
+#       array_noko_governors << tr_list if tr_list.css("td").length >= 6
+#       end
+        
+#       array_noko_governors.each do |tr_list|
+      
+#       scraped_governor = {}
+      
+#       scraped_governor[:name] = tr_list.css("td big b a").text
+#       scraped_governor[:age] = tr_list.css("td small").text[0..-13].concat(' Years)')
+#       scraped_governor[:term_in_office] = tr_list.css("td")[4].text[0..-2]
+#       scraped_governor[:party_affiliation] = tr_list.css("td")[5].text[0..-2].concat(' Party')
+#       scraped_governor[:profile_url] = "https://en.wikipedia.org#{tr_list.css("td big b a").attribute("href").value}"
+#       final_array_governors << scraped_governor
+#     end
+#     final_array_governors
+#     TexasGovernorsCliApp::Governor.create_from_collection(final_array_governors)
+    
+#   end  
+   
+# end
