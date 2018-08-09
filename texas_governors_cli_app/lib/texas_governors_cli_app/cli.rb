@@ -3,14 +3,14 @@ class TexasGovernorsCliApp::CLI
   
   def call 
     puts "Welcome to the app for the chronological history of Governors from the state of Texas since 1846".blue
-    puts ""
     puts "Type 'list' to print all the governors of the state of Texas OR "
-    puts LINE.red  
+    # puts LINE.red  
     puts "Type 'rep' to list all the governors of the republican party OR ".red
-    puts LINE.blue
-    puts "Type 'dem' to list all the governors of the democtatic party ".blue
-    puts LINE
-    puts LINE
+    # puts LINE.blue
+    puts "Type 'dem' to list all the governors of the democtatic party OR ".blue
+    # puts LINE
+    puts "Type 'exit' to quit this application ".red
+    # puts LINE
     start
   end 
   
@@ -18,6 +18,7 @@ class TexasGovernorsCliApp::CLI
     input = STDIN.gets.strip.downcase 
       if input =="list"  
         list_governor_names
+        puts LINE
       elsif input == "rep"
         list_republican_governors
       elsif input == "dem"
@@ -27,9 +28,6 @@ class TexasGovernorsCliApp::CLI
       else 
         call
       end 
-    puts LINE
-    puts "Type the index number of the respectable governor you would like to know more about, or type 'list' to print list of governors  or type 'exit' to quit "
-    puts LINE
     start until input == "exit"
   end 
   
@@ -43,11 +41,10 @@ class TexasGovernorsCliApp::CLI
       else 
       puts"#{i}. #{governor_object.name}"
       end 
-      
     end 
-    puts "Type the index number of the respectable governor you would like to know more about, or type 'list' to print list of governors  or type 'exit' to quit "
+    puts "Which repectable governor would you like to get more information about ?"
     governor_details
-     
+    call
     end
   
   def governor_details
@@ -70,20 +67,7 @@ class TexasGovernorsCliApp::CLI
       puts LINE
     else
     end
-    governor_details until input = "exit"
-    #   # puts "Type another index number for governor details  or type list to print the list of governors again"
-    # elsif input == "exit"
-    #   leave
-    # elsif input == "list"
-    #   list_governor_names
-    #   puts "Type another index number for governor details  or type list to print the list of governors again OR type 'exit' to quit"
     
-    # else 
-    #   puts " Please enter the correct index number to get more details."
-    #   governor_details
-    # end 
-    # governor_details until input =="exit"
-    # puts LINE
   end 
   
   def list_republican_governors
@@ -91,12 +75,18 @@ class TexasGovernorsCliApp::CLI
       puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
       # Each governor index number is the same as the one in the original list in order to provide a chronological list.
     end 
+    puts "Which repectable governor would you like to get more information about ?"
+    governor_details
+    call
   end 
   
   def list_democratic_governors
     TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor,i|
     puts "#{i}.#{governor.name}".blue if governor.party_affiliation == "Democratic Party"
     end
+    puts "Which repectable governor would you like to get more information about ?"
+    governor_details
+    call
     # Each governor index number is the same as the one in the original list in order to provide a chronological list.
   end 
   
