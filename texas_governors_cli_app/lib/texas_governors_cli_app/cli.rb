@@ -1,12 +1,16 @@
 class TexasGovernorsCliApp::CLI 
-  LINE = "--------------------------------------------"
+  LINE = "--------------------------------------------------------------------------------"
   
   def call 
-    puts "Welcome to the app for the chronological history of Governors who served the state of Texas since 1846 ".blue
+    puts "Welcome to the app for the chronological history of Governors from the state of Texas since 1846 ".blue
     puts ""
-    puts "Type list to print all the governors of the state of Texas till date : OR "
-    puts "Type Rep to list all the governors of the republican party OR ".red
-    puts "Type Dem to list all the governors of the democtatic party ".blue
+    puts "Type 'list' to print all the governors of the state of Texas OR "
+    puts LINE.red  
+    puts "Type 'rep' to list all the governors of the republican party OR ".red
+    puts LINE.blue
+    puts "Type 'dem' to list all the governors of the democtatic party ".blue
+    puts LINE
+    puts LINE
     start
   end 
   
@@ -19,22 +23,13 @@ class TexasGovernorsCliApp::CLI
       elsif input == "dem"
         list_democratic_governors
       else 
-        puts " Please type list , rep or dem to go forward"
-        start
+        call
       end 
     puts LINE
     puts "Type the index number of the respectable governor you would like to know more about, or type 'list' to print list of governors  or type 'exit' to quit "
     puts LINE
-    puts LINE
-    # if input == " list"
-    #   list_governor_names
-      
-    # elsif input.to_i.between?(1,TexasGovernorsCliApp::Governor.create_from_collection.size)
     governor_details
     start until input == "exit"
-    # elsif input == "exit"
-    #   leave
-    #end 
   end 
   
   def list_governor_names
