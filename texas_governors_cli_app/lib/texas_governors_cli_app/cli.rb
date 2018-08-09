@@ -2,7 +2,7 @@ class TexasGovernorsCliApp::CLI
   LINE = "--------------------------------------------------------------------------------"
   
   def call 
-    puts "Welcome to the app for the chronological history of Governors from the state of Texas since 1846 ".blue
+    puts "Welcome to the app for the chronological history of Governors from the state of Texas since 1846".blue
     puts ""
     puts "Type 'list' to print all the governors of the state of Texas OR "
     puts LINE.red  
@@ -22,13 +22,14 @@ class TexasGovernorsCliApp::CLI
         list_republican_governors
       elsif input == "dem"
         list_democratic_governors
+      elsif input == "exit"
+        leave
       else 
         call
       end 
     puts LINE
     puts "Type the index number of the respectable governor you would like to know more about, or type 'list' to print list of governors  or type 'exit' to quit "
     puts LINE
-    governor_details
     start until input == "exit"
   end 
   
@@ -41,8 +42,11 @@ class TexasGovernorsCliApp::CLI
         puts "#{i}. #{governor_object.name}".red  
       else 
       puts"#{i}. #{governor_object.name}"
-      end  
+      end 
+      
     end 
+    puts "Type the index number of the respectable governor you would like to know more about, or type 'list' to print list of governors  or type 'exit' to quit "
+    governor_details
      
     end
   
@@ -64,19 +68,22 @@ class TexasGovernorsCliApp::CLI
       puts governor.term_in_office
       puts governor.profile_url
       puts LINE
-      puts "Type another index number for governor details  or type list to print the list of governors again"
-    elsif input == "exit"
-      leave
-    elsif input == "list"
-      list_governor_names
-      puts "Type another index number for governor details  or type list to print the list of governors again OR type 'exit' to quit"
+    else
+    end
+    governor_details until input = "exit"
+    #   # puts "Type another index number for governor details  or type list to print the list of governors again"
+    # elsif input == "exit"
+    #   leave
+    # elsif input == "list"
+    #   list_governor_names
+    #   puts "Type another index number for governor details  or type list to print the list of governors again OR type 'exit' to quit"
     
-    else 
-      puts " Please enter the correct index number to get more details."
-      governor_details
-    end 
-    governor_details until input =="exit"
-    puts LINE
+    # else 
+    #   puts " Please enter the correct index number to get more details."
+    #   governor_details
+    # end 
+    # governor_details until input =="exit"
+    # puts LINE
   end 
   
   def list_republican_governors
