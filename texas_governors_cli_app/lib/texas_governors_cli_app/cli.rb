@@ -32,7 +32,7 @@ class TexasGovernorsCliApp::CLI
   
   def list_governor_names
     TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor_object,i|
-      if governor_object.party_affiliation == "Democratic Party"
+      if governor_object.party_affiliation== "Democratic Party"
         puts"#{i}. #{governor_object.name}".blue 
       elsif  governor_object.party_affiliation == "Republican Party"
         puts "#{i}. #{governor_object.name}".red  
@@ -60,9 +60,9 @@ class TexasGovernorsCliApp::CLI
         puts governor.name
         puts governor.party_affiliation
       end 
-      puts governor.age
-      puts governor.term_in_office
-      puts governor.profile_url
+      puts "Age: #{governor.age}".red
+      puts "Term in Oiiice: #{governor.term_in_office}".red 
+      puts governor.profile_url.red 
       puts LINE
     else
     end
