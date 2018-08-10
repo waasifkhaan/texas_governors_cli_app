@@ -22,8 +22,6 @@ class TexasGovernorsCliApp::CLI
         list_republican_governors
       elsif input == "dem"
         list_democratic_governors
-      elsif input == "exit"
-        leave
       else 
         call
       end 
@@ -53,16 +51,20 @@ class TexasGovernorsCliApp::CLI
       if governor.party_affiliation == "Republican Party"
         puts governor.name.red
         puts governor.party_affiliation.red
+        puts "Age: #{governor.age}".red
+        puts "Term in Oiiice: #{governor.term_in_office}".red 
+        puts governor.profile_url.red 
       elsif governor.party_affiliation == "Democratic Party"
         puts governor.name.blue
         puts governor.party_affiliation.blue
+        puts "Age: #{governor.age}".blue
+        puts "Term in Oiiice: #{governor.term_in_office}".blue 
+        puts governor.profile_url.blue 
       else 
         puts governor.name
         puts governor.party_affiliation
       end 
-      puts "Age: #{governor.age}".red
-      puts "Term in Oiiice: #{governor.term_in_office}".red 
-      puts governor.profile_url.red 
+      
       puts LINE
     else
     end
@@ -75,7 +77,7 @@ class TexasGovernorsCliApp::CLI
       # Each governor index number is the same as the one in the original list in order to provide a chronological list.
     end 
     puts LINE
-    puts "Please type the index 'number' to get more information about the respectable governor ?"
+    puts "Please type the index 'number' to get more information about the honourable governor ?"
     puts LINE
     governor_details
     call
