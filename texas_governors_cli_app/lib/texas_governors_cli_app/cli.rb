@@ -15,17 +15,24 @@ class TexasGovernorsCliApp::CLI
   
   def start 
     input = STDIN.gets.strip.downcase 
+    begin
       if input =="list"  
         list_governor_names
-        puts LINE
       elsif input == "rep"
         list_republican_governors
       elsif input == "dem"
         list_democratic_governors
-      else 
+      elsif input != "exit" || input != "list" || input != "dem" || input != "rep"
+      call
+      end
+        puts LINE
+        puts "Please type the index 'number' to get more information about the honourable governor ?"
+        puts LINE
+        governor_details
         call
-      end 
-    start until input == "exit"
+        input = STDIN.gets.strip.downcase 
+    end until input == "exit"
+    leave 
   end 
   
   def list_governor_names
@@ -38,11 +45,8 @@ class TexasGovernorsCliApp::CLI
       puts"#{i}. #{governor_object.name}"
       end 
     end 
-    puts LINE
-    puts "Please type the index 'number' to get more information about the respectable governor ?"
-    governor_details
-    call
-    end
+   
+  end
   
   def governor_details
     input = STDIN.gets.strip.downcase 
@@ -63,10 +67,12 @@ class TexasGovernorsCliApp::CLI
       else 
         puts governor.name
         puts governor.party_affiliation
+        puts "Age: #{governor.age}"
+        puts "Term in Office: #{governor.term_in_office}" 
+        puts governor.profile_url
       end 
-      
-      puts LINE
-    else
+     
+    
     end
     
   end 
@@ -76,11 +82,8 @@ class TexasGovernorsCliApp::CLI
       puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
       # Each governor index number is the same as the one in the original list in order to provide a chronological list.
     end 
-    puts LINE
-    puts "Please type the index 'number' to get more information about the honourable governor ?"
-    puts LINE
-    governor_details
-    call
+    
+    
   end 
   
   def list_democratic_governors
@@ -88,9 +91,8 @@ class TexasGovernorsCliApp::CLI
     puts "#{i}.#{governor.name}".blue if governor.party_affiliation == "Democratic Party"
     end
     puts LINE
-    puts "Please type the index 'number' to get more information about the respectable governor ?"
-    governor_details
-    call
+    
+    
     # Each governor index number is the same as the one in the original list in order to provide a chronological list.
   end 
   
