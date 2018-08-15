@@ -1,7 +1,7 @@
 class TexasGovernorsCliApp::CLI 
   LINE = "--------------------------------------------------------------------------------"
   
-  def call 
+  def menu 
     puts LINE
     puts "Welcome to the app for the chronological history of Governors from the state of Texas since 1846".blue
     puts LINE 
@@ -10,29 +10,30 @@ class TexasGovernorsCliApp::CLI
     puts "Type 'dem' to list all the governors of the democtatic party OR ".blue
     puts "Type 'exit' to quit this application ".red
     puts LINE
+  end 
+  
+  def call 
     start
   end 
   
   def start 
+    input = "" 
+    until input == "exit"
+    menu
     input = STDIN.gets.strip.downcase 
-    begin
+    
       if input =="list"  
         list_governor_names
       elsif input == "rep"
         list_republican_governors
       elsif input == "dem"
         list_democratic_governors
-      elsif input != "exit" || input != "list" || input != "dem" || input != "rep"
-      call
+      else
+        puts "Please type correctly "
       end
-        puts LINE
-        puts "Please type the index 'number' to get more information about the honourable governor ?"
-        puts LINE
-        governor_details
-        call
-        input = STDIN.gets.strip.downcase 
-    end until input == "exit"
-    leave 
+    
+    end 
+  leave 
   end 
   
   def list_governor_names
@@ -44,8 +45,12 @@ class TexasGovernorsCliApp::CLI
       else 
       puts"#{i}. #{governor_object.name}"
       end 
-    end 
-   
+    end
+    puts LINE
+    puts "Please type the index 'number' to get more information about the honourable governor   ?"
+    puts LINE
+    governor_details
+    
   end
   
   def governor_details
@@ -56,13 +61,13 @@ class TexasGovernorsCliApp::CLI
         puts governor.name.red
         puts governor.party_affiliation.red
         puts "Age: #{governor.age}".red
-        puts "Term in Oiiice: #{governor.term_in_office}".red 
+        puts "Term in Office: #{governor.term_in_office}".red 
         puts governor.profile_url.red 
       elsif governor.party_affiliation == "Democratic Party"
         puts governor.name.blue
         puts governor.party_affiliation.blue
         puts "Age: #{governor.age}".blue
-        puts "Term in Oiiice: #{governor.term_in_office}".blue 
+        puts "Term in Office: #{governor.term_in_office}".blue 
         puts governor.profile_url.blue 
       else 
         puts governor.name
@@ -70,8 +75,11 @@ class TexasGovernorsCliApp::CLI
         puts "Age: #{governor.age}"
         puts "Term in Office: #{governor.term_in_office}" 
         puts governor.profile_url
-      end 
-     
+      end
+      puts "Enter to go back to the main menu " 
+      input = gets.chomp 
+      
+      
     
     end
     
