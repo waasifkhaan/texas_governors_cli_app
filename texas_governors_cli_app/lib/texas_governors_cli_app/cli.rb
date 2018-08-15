@@ -29,7 +29,7 @@ class TexasGovernorsCliApp::CLI
       elsif input == "dem"
         list_democratic_governors
       else
-        puts "Please type correctly "
+        nil
       end
     
     end 
@@ -90,6 +90,10 @@ class TexasGovernorsCliApp::CLI
       puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
       # Each governor index number is the same as the one in the original list in order to provide a chronological list.
     end 
+    puts LINE
+    puts "Please type the index 'number' to get more information about the honourable governor   ?"
+    puts LINE
+    governor_details
     
     
   end 
@@ -99,6 +103,9 @@ class TexasGovernorsCliApp::CLI
     puts "#{i}.#{governor.name}".blue if governor.party_affiliation == "Democratic Party"
     end
     puts LINE
+    puts "Please type the index 'number' to get more information about the honourable governor   ?"
+    puts LINE
+    governor_details
     
     
     # Each governor index number is the same as the one in the original list in order to provide a chronological list.
