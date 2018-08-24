@@ -6,8 +6,8 @@ class TexasGovernorsCliApp::CLI
     puts "Welcome to the app for the chronological history of Governors from the state of Texas since 1846".blue
     puts LINE 
     puts "Type 'list' to print all the governors of the state of Texas OR "
-    puts "Type 'rep' to list all the governors of the republican party OR ".red
-    puts "Type 'dem' to list all the governors of the democtatic party OR ".blue
+    puts "Type 'rep' to list all the governors belonging to the republican party OR ".red
+    puts "Type 'dem' to list all the governors belonging to the democtatic party OR ".blue
     puts "Type 'exit' to quit this application ".red
     puts LINE
   end 
