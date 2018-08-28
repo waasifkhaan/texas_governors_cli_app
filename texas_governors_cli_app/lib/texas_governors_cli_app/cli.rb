@@ -31,7 +31,6 @@ class TexasGovernorsCliApp::CLI
       else
         nil
       end
-    
     end 
   leave 
   end 
@@ -47,7 +46,7 @@ class TexasGovernorsCliApp::CLI
       end 
     end
     puts LINE
-    puts "Please type the index 'number' to get more information about the honourable governor   ?"
+    puts "Please type the index 'number' to get more information about the honourable governor."
     puts LINE
     governor_details
     
@@ -91,7 +90,7 @@ class TexasGovernorsCliApp::CLI
       # Each governor index number is the same as the one in the original list in order to provide a chronological list.
     end 
     puts LINE
-    puts "Please type the index 'number' to get more information about the honourable governor   ?"
+    puts "Please type the index 'number' to get more information about the honourable governor."
     puts LINE
     governor_details
     
@@ -103,7 +102,7 @@ class TexasGovernorsCliApp::CLI
     puts "#{i}.#{governor.name}".blue if governor.party_affiliation == "Democratic Party"
     end
     puts LINE
-    puts "Please type the index 'number' to get more information about the honourable governor   ?"
+    puts "Please type the index 'number' to get more information about the honourable governor."
     puts LINE
     governor_details
     
@@ -113,7 +112,7 @@ class TexasGovernorsCliApp::CLI
   
   def leave 
     puts LINE
-    puts " Thank you for using the CLI_Texas_Governor gem application, hope it was informative."
+    puts "Thank you for using the CLI_Texas_Governor gem application, hope it was informative."
     puts LINE.blue 
     puts LINE.red
   end 
