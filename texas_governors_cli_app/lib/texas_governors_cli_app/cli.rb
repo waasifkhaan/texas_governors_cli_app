@@ -15,7 +15,6 @@ class TexasGovernorsCliApp::CLI
   def call 
     TexasGovernorsCliApp::Governor.create_from_collection
     start
-    
   end 
   
   def start 
@@ -57,8 +56,8 @@ class TexasGovernorsCliApp::CLI
   
   def governor_details
     input = STDIN.gets.strip.downcase 
-    if input.to_i.between?(1,TexasGovernorsCliApp::Governor.create_from_collection.size)
-      governor = TexasGovernorsCliApp::Governor.create_from_collection[input.to_i - 1]
+    if input.to_i.between?(1,TexasGovernorsCliApp::Governor.all.size)
+      governor = TexasGovernorsCliApp::Governor.all[input.to_i - 1]
       if governor.party_affiliation == "Republican Party"
         puts governor.name.red
         puts governor.party_affiliation.red
@@ -88,7 +87,7 @@ class TexasGovernorsCliApp::CLI
   end 
   
   def list_republican_governors
-    TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor,i|
+    TexasGovernorsCliApp::Governor.all.each.with_index(1) do |governor,i|
       puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
       # Each governor index number is the same as the one in the original list in order to provide a chronological list.
     end 
@@ -101,7 +100,7 @@ class TexasGovernorsCliApp::CLI
   end 
   
   def list_democratic_governors
-    TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor,i|
+    TexasGovernorsCliApp::Governor.all.each.with_index(1) do |governor,i|
     puts "#{i}.#{governor.name}".blue if governor.party_affiliation == "Democratic Party"
     end
     puts LINE
