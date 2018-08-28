@@ -19,5 +19,4 @@ class TexasGovernorsCliApp::Governor
     self.new(governor_hash)  }
   end
   
- 
 end 

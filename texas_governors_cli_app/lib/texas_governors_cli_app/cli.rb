@@ -13,7 +13,9 @@ class TexasGovernorsCliApp::CLI
   end 
   
   def call 
+    TexasGovernorsCliApp::Governor.create_from_collection
     start
+    
   end 
   
   def start 
@@ -36,7 +38,8 @@ class TexasGovernorsCliApp::CLI
   end 
   
   def list_governor_names
-    TexasGovernorsCliApp::Governor.create_from_collection.each.with_index(1) do |governor_object,i|
+    TexasGovernorsCliApp::Governor.all.each.with_index(1) do |governor_object,i|
+      
       if governor_object.party_affiliation== "Democratic Party"
         puts"#{i}. #{governor_object.name}".blue 
       elsif  governor_object.party_affiliation == "Republican Party"

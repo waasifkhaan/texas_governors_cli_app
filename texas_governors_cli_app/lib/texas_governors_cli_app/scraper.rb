@@ -1,5 +1,5 @@
 class TexasGovernorsCliApp::Scraper
-  attr_accessor :name, :profile_url, :age, :term_in_office, :party_affiliation, :noko
+  attr_accessor :noko
   
   def initialize 
     @noko = Nokogiri::HTML(open("https://en.wikipedia.org/wiki/List_of_Governors_of_Texas#Governors_of_Texas"))
