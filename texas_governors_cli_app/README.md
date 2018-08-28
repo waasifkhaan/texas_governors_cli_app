@@ -27,7 +27,7 @@ Start the application by running ruby bin/run from the terminal. The applicaion 
 3. List 'dem' to print all the democratic governors.
 4. Type 'exit' to quit the application. 
 
-On typing 'list' the user will see a list of all the governors number (1-49) and in the next step user can type the associated number to get more details about the governor like party affiliation, full name , age , term in office and link to the wikipedia page for the respective governor. After providing the details the user can hit enter and get back to the main page of the application. 
+On typing 'list' the user will see a list of all the governors numbered (1-49)followed by an input request of associated number to get more details about the governor like party affiliation, full name , age , term in office and link to the wikipedia page for the respective governor. After providing the details the user can hit enter and get back to the main page of the application. 
 On typing 'rep' the user will see a list of all the republican governors.
 On typing 'dem' the user will see a list of all the governors belonging to the democratic party.
 On typing 'exit' the program ends with a goodbye message.
