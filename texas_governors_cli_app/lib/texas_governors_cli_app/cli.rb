@@ -51,7 +51,6 @@ class TexasGovernorsCliApp::CLI
     puts "Please type the index 'number' to get more information about the honourable governor."
     puts LINE
     governor_details
-    
   end
   
   def governor_details
@@ -79,24 +78,18 @@ class TexasGovernorsCliApp::CLI
       end
       puts "Enter to go back to the main menu " 
       input = gets.chomp 
-      
-      
-    
     end
-    
   end 
   
   def list_republican_governors
     TexasGovernorsCliApp::Governor.all.each.with_index(1) do |governor,i|
-      puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
-      # Each governor index number is the same as the one in the original list in order to provide a chronological list.
+    puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
     end 
     puts LINE
     puts "Please type the index 'number' to get more information about the honourable governor."
     puts LINE
     governor_details
-    
-    
+    # Each governor index number is the same as the one in the original list in order to provide a chronological list.
   end 
   
   def list_democratic_governors
@@ -107,8 +100,6 @@ class TexasGovernorsCliApp::CLI
     puts "Please type the index 'number' to get more information about the honourable governor."
     puts LINE
     governor_details
-    
-    
     # Each governor index number is the same as the one in the original list in order to provide a chronological list.
   end 
   

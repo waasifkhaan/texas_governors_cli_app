@@ -1,6 +1,5 @@
 class TexasGovernorsCliApp::Governor
   attr_accessor :name, :profile_url, :age, :term_in_office, :party_affiliation
-    
   @@all = []  
   
   def self.all
@@ -14,9 +13,7 @@ class TexasGovernorsCliApp::Governor
   end
 
   def self.create_from_collection
-    
     TexasGovernorsCliApp::Scraper.new.scraper_governors.map { |governor_hash|
     self.new(governor_hash)  }
   end
-  
 end 

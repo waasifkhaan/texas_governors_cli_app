@@ -7,7 +7,6 @@ class TexasGovernorsCliApp::Scraper
   
   def scraper_governors 
     final_array_governors = []
-    
     array_noko_governors = []
     
     @noko.search(".wikitable")[1].css("tr").drop(1).each {|tr_list|
