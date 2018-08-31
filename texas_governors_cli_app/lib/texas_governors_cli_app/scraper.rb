@@ -26,3 +26,5 @@ class TexasGovernorsCliApp::Scraper
   end  
    
 end
+
+  
