@@ -38,7 +38,7 @@ class TexasGovernorsCliApp::CLI
   
   def list_governor_names(governors)
     governors.each.with_index(1) do |governor_object,i|
-      binding.pry 
+      # binding.pry 
       if governor_object.party_affiliation== "Democratic Party"
         puts"#{i}. #{governor_object.name}".blue 
       elsif  governor_object.party_affiliation == "Republican Party"

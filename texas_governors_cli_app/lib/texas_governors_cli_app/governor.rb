@@ -19,15 +19,19 @@ class TexasGovernorsCliApp::Governor
   end
   
   def self.republicans
+    rep = []
     @@all.map { |governor|
-    governor.party_affiliation == "Republican Party"
+    rep <<governor if governor.party_affiliation == "Republican Party"
     }
+    rep
   end 
   
   def self.democrats
+    dem = []
     @@all.map { |governor|
-    governor.party_affiliation == "Democratic Party"
+    dem <<governor if governor.party_affiliation == "Democratic Party"
     }
+    dem 
   end       
   
 end 
