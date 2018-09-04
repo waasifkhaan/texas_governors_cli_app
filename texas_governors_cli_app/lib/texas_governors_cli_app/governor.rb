@@ -3,12 +3,13 @@ class TexasGovernorsCliApp::Governor
   @@all = []  
   
   def self.all
+    # binding.pry
     @@all
   end
   
   
   def initialize(governor_hash) 
-    governor_hash.each { |key, val|
+    governor_hash.each{ |key, val|
     send "#{key}=", val}
     @@all << self
   end
@@ -20,18 +21,18 @@ class TexasGovernorsCliApp::Governor
   
   def self.republicans
     rep = []
-    @@all.map { |governor|
-    rep <<governor if governor.party_affiliation == "Republican Party"
+    @@all.each { |governor|
+    rep << governor if governor.party_affiliation =="Republican Party"
     }
-    rep
-  end 
+    rep 
+    end 
   
   def self.democrats
     dem = []
-    @@all.map { |governor|
-    dem <<governor if governor.party_affiliation == "Democratic Party"
+    @@all.each{ |governor|
+    dem << governor if governor.party_affiliation == "Democratic Party"
     }
-    dem 
+    dem
   end       
   
 end 

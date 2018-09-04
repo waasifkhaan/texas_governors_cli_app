@@ -56,7 +56,7 @@ class TexasGovernorsCliApp::CLI
   def governor_details(governors)
     input = STDIN.gets.strip.downcase 
     if input.to_i.between?(1,TexasGovernorsCliApp::Governor.all.size)
-      governor = TexasGovernorsCliApp::Governor.all[input.to_i - 1]
+      governor = governors[input.to_i - 1]
       if governor.party_affiliation == "Republican Party"
         puts governor.name.red
         puts governor.party_affiliation.red
@@ -91,28 +91,6 @@ class TexasGovernorsCliApp::CLI
     end
   
   end 
-  
-  # def list_republican_governors
-  #   TexasGovernorsCliApp::Governor.all.each.with_index(1) do |governor,i|
-  #   puts "#{i}.#{governor.name}".red if governor.party_affiliation == "Republican Party"
-  #   end 
-  #   puts LINE
-  #   puts "Please type the index 'number' to get more information about the honourable governor."
-  #   puts LINE
-  #   governor_details
-  #   # Each governor index number is the same as the one in the original list in order to provide a chronological list.
-  # end 
-  
-  # def list_democratic_governors
-  #   TexasGovernorsCliApp::Governor.all.each.with_index(1) do |governor,i|
-  #   puts "#{i}.#{governor.name}".blue if governor.party_affiliation == "Democratic Party"
-  #   end
-  #   puts LINE
-  #   puts "Please type the index 'number' to get more information about the honourable governor."
-  #   puts LINE
-  #   governor_details
-  #   # Each governor index number is the same as the one in the original list in order to provide a chronological list.
-  # end 
   
   def leave 
     puts LINE
