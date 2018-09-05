@@ -33,7 +33,9 @@ class TexasGovernorsCliApp::CLI
         nil
       end
     end 
-  leave 
+    
+  leave
+  
   end 
   
   def list_governor_names(governors)
@@ -78,12 +80,12 @@ class TexasGovernorsCliApp::CLI
       end
       puts LINE
       puts "Would you like to see another governor from the list ?"
-      puts "Type 'yes' to see another governor OR 'no' to go back to the main menu" 
+      puts "Type 'yes' to see another governor OR 'any other key' to go back to the main menu" 
       input = STDIN.gets.strip.downcase 
       if input =="yes"
         list_governor_names(governors)
       else 
-        start
+        return
       end   
     else 
       puts " Please type a valid index number "
